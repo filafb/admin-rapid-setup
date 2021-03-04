@@ -1,6 +1,11 @@
 import React, { FC, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Layout, PageBlock, PageHeader } from 'vtex.styleguide'
+import {
+  Layout,
+  PageBlock,
+  PageHeader,
+  FloatingActionBar,
+} from 'vtex.styleguide'
 
 // import BusinessAndProducts from './components/BusinessAndProducts'
 import CountryAndLanguage from './components/CountryAndLanguage'
@@ -12,10 +17,10 @@ import './styles.global.css'
 const initialState = {
   stepOne: true,
   stepTwo: true,
-  stepThree: true,
+  stepThree: false,
 }
 
-const AdminExample: FC = () => {
+const RapidSetup: FC = () => {
   const [steps, setSteps] = useState(initialState)
 
   const completeSteps = (
@@ -41,11 +46,26 @@ const AdminExample: FC = () => {
       ) : null}
       {steps.stepTwo ? (
         <PageBlock title="3 - Payment Provider" variation="full">
-          <PaymentProvider />
+          <PaymentProvider checkStatus={completeSteps} />
         </PageBlock>
+      ) : null}
+      {steps.stepThree ? (
+        <FloatingActionBar
+          save={{
+            label: 'Create first order',
+            onClick: () =>
+              // eslint-disable-next-line no-restricted-globals
+              open(
+                'https://rapidsetup.myvtex.com/checkout/cart/add/?sku=1&qty=1&seller=1&sc=1'
+              ),
+          }}
+          cancel={{
+            label: 'cancel',
+          }}
+        />
       ) : null}
     </Layout>
   )
 }
 
-export default AdminExample
+export default RapidSetup

@@ -30,7 +30,7 @@ const CountryAndLanguage: FC<Props> = ({ checkStatus }) => {
     setselectedLanguage(value)
   }
 
-  const handleChangeTimezone = (_: any, value: any) => {
+  const handleChangeTimezone = (_: any, value: string) => {
     setselectedTimezone(value)
   }
 
