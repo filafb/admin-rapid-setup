@@ -10,13 +10,13 @@ import {
 // import BusinessAndProducts from './components/BusinessAndProducts'
 import CountryAndLanguage from './components/CountryAndLanguage'
 import PaymentProvider from './components/PaymentProvider'
-import Warehouses from './components/Warehouses'
+import ShippingPolices from './components/ShippingPolices'
 
 import './styles.global.css'
 
 const initialState = {
-  stepOne: true,
-  stepTwo: true,
+  stepOne: false,
+  stepTwo: false,
   stepThree: false,
 }
 
@@ -40,8 +40,8 @@ const RapidSetup: FC = () => {
         <CountryAndLanguage checkStatus={completeSteps} />
       </PageBlock>
       {steps.stepOne ? (
-        <PageBlock title="2 - Warehouses" variation="full">
-          <Warehouses />
+        <PageBlock title="2 - Shipping Polices" variation="full">
+          <ShippingPolices checkStatus={completeSteps} />
         </PageBlock>
       ) : null}
       {steps.stepTwo ? (
