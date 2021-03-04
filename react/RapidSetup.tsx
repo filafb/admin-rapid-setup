@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Layout, PageBlock, PageHeader } from 'vtex.styleguide'
-import BusinessAndProducts from './components/BusinessAndProducts'
+// import BusinessAndProducts from './components/BusinessAndProducts'
 import CountryAndLanguage from './components/CountryAndLanguage'
 import PaymentProvider from './components/PaymentProvider'
 import Warehouses from './components/Warehouses'
