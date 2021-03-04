@@ -19,7 +19,7 @@ const PaymentProvider: FC<Props> = ({ checkStatus }) => {
     if (selectedPayment) {
       checkStatus('stepThree', true)
     }
-  }, [selectedPayment])
+  }, [checkStatus, selectedPayment])
 
   return (
     <div className="pa5 flex justify-center">

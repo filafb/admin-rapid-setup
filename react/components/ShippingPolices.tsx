@@ -19,7 +19,7 @@ const ShippingPolices: FC<Props> = ({ checkStatus }) => {
     if (selectedShippingPolice) {
       checkStatus('stepTwo', true)
     }
-  }, [selectedShippingPolice])
+  }, [checkStatus, selectedShippingPolice])
 
   return (
     <div className="pa5 flex justify-center">

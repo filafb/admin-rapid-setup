@@ -49,7 +49,13 @@ const CountryAndLanguage: FC<Props> = ({ checkStatus }) => {
       checkStatus('stepOne', true)
       setComplete(true)
     }
-  }, [selectedRegion, selectedLanguage, selectedTimezone, selectedCurrency])
+  }, [
+    selectedRegion,
+    selectedLanguage,
+    selectedTimezone,
+    selectedCurrency,
+    checkStatus,
+  ])
 
   return (
     <div className="flex w-100 flex-column items-center relative">
