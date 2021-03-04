@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
-import { Dropdown } from 'vtex.styleguide'
+import { Dropdown, IconSuccess } from 'vtex.styleguide'
 
 import {
   regionOptions,
@@ -20,6 +20,7 @@ const CountryAndLanguage: FC<Props> = ({ checkStatus }) => {
   const [selectedLanguage, setselectedLanguage] = useState<string>('')
   const [selectedTimezone, setselectedTimezone] = useState<string>('')
   const [selectedCurrency, setselectedCurrency] = useState<string>('')
+  const [complete, setComplete] = useState(false)
 
   const handleChangeRegion = (_: any, value: string) => {
     setselectedRegion(value)
@@ -45,11 +46,17 @@ const CountryAndLanguage: FC<Props> = ({ checkStatus }) => {
       selectedCurrency
     ) {
       checkStatus('stepOne', true)
+      setComplete(true)
     }
   }, [selectedRegion, selectedLanguage, selectedTimezone, selectedCurrency])
 
   return (
     <div className="flex w-100 flex-column items-center">
+      {complete ? (
+        <div>
+          <IconSuccess size={36} />
+        </div>
+      ) : null}
       <div className="mb5" style={{ width: '420px' }}>
         <Dropdown
           options={regionOptions}
