@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { Dropdown } from 'vtex.styleguide'
 
 import {
@@ -8,7 +8,14 @@ import {
   timezoneOptions,
 } from '../fixture'
 
-const CountryAndLanguage: FC = () => {
+interface Props {
+  checkStatus: (
+    step: 'stepOne' | 'stepTwo' | 'stepThree',
+    status: boolean
+  ) => void
+}
+
+const CountryAndLanguage: FC<Props> = ({ checkStatus }) => {
   const [selectedRegion, setselectedRegion] = useState<string>('')
   const [selectedLanguage, setselectedLanguage] = useState<string>('')
   const [selectedTimezone, setselectedTimezone] = useState<string>('')
@@ -29,6 +36,17 @@ const CountryAndLanguage: FC = () => {
   const handleChangeCurrency = (_: any, value: string) => {
     setselectedCurrency(value)
   }
+
+  useEffect(() => {
+    if (
+      selectedRegion &&
+      selectedLanguage &&
+      selectedTimezone &&
+      selectedCurrency
+    ) {
+      checkStatus('stepOne', true)
+    }
+  }, [selectedRegion, selectedLanguage, selectedTimezone, selectedCurrency])
 
   return (
     <div className="flex w-100 flex-column items-center">
@@ -56,7 +74,7 @@ const CountryAndLanguage: FC = () => {
           placeholder="Select your Time Zone"
         />
       </div>
-      <div className="mb5" style={{ width: '420px' }}>
+      <div style={{ width: '420px' }}>
         <Dropdown
           options={currencyOptions}
           value={selectedCurrency}

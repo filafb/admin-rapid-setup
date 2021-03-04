@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Layout, PageBlock, PageHeader } from 'vtex.styleguide'
 
@@ -9,7 +9,22 @@ import Warehouses from './components/Warehouses'
 
 import './styles.global.css'
 
+const initialState = {
+  stepOne: false,
+  stepTwo: false,
+  stepThree: false,
+}
+
 const AdminExample: FC = () => {
+  const [steps, setSteps] = useState(initialState)
+
+  const completeSteps = (
+    step: 'stepOne' | 'stepTwo' | 'stepThree',
+    status: boolean
+  ) => {
+    setSteps({ ...steps, [step]: status })
+  }
+
   return (
     <Layout
       pageHeader={
@@ -17,14 +32,18 @@ const AdminExample: FC = () => {
       }
     >
       <PageBlock title="1 - Country & Language" variation="full">
-        <CountryAndLanguage />
+        <CountryAndLanguage checkStatus={completeSteps} />
       </PageBlock>
-      <PageBlock title="2 - Warehouses" variation="full">
-        <Warehouses />
-      </PageBlock>
-      <PageBlock title="3 - Payment Provider" variation="full">
-        <PaymentProvider />
-      </PageBlock>
+      {steps.stepOne ? (
+        <PageBlock title="2 - Warehouses" variation="full">
+          <Warehouses />
+        </PageBlock>
+      ) : null}
+      {steps.stepTwo ? (
+        <PageBlock title="3 - Payment Provider" variation="full">
+          <PaymentProvider />
+        </PageBlock>
+      ) : null}
     </Layout>
   )
 }
