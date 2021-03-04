@@ -39,6 +39,7 @@ const CountryAndLanguage: FC<Props> = ({ checkStatus }) => {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line vtex/prefer-early-return
     if (
       selectedRegion &&
       selectedLanguage &&
@@ -51,9 +52,12 @@ const CountryAndLanguage: FC<Props> = ({ checkStatus }) => {
   }, [selectedRegion, selectedLanguage, selectedTimezone, selectedCurrency])
 
   return (
-    <div className="flex w-100 flex-column items-center">
+    <div className="flex w-100 flex-column items-center relative">
       {complete ? (
-        <div>
+        <div
+          className="absolute flex w-100"
+          style={{ justifyContent: 'end', color: 'green' }}
+        >
           <IconSuccess size={36} />
         </div>
       ) : null}
