@@ -1,0 +1,6 @@
+{
+  "admin.rapid.setup": {
+    "component": "RapidSetup",
+    "path": "/admin/app/rapid-setup"
+  }
+}
