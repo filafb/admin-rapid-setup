@@ -10,9 +10,9 @@ import Warehouses from './components/Warehouses'
 import './styles.global.css'
 
 const initialState = {
-  stepOne: false,
-  stepTwo: false,
-  stepThree: false,
+  stepOne: true,
+  stepTwo: true,
+  stepThree: true,
 }
 
 const AdminExample: FC = () => {
